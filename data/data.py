@@ -1,4 +1,5 @@
 from finvizfinance.screener.overview import Overview
+from pathlib import Path
 import pandas as pd
 
 
@@ -10,6 +11,8 @@ def get_energy_stocks():
         'Price': 'Over $5',
         'Exchange': 'NASDAQ'
     }
+    output_path = Path("data") / "energy_tickers.txt"
+    output_path.parent.mkdir(parents=True, exist_ok=True)
 
     try:
         foverview.set_filter(filters_dict=filters_dict)
@@ -21,7 +24,7 @@ def get_energy_stocks():
 
         tickers = df['Ticker'].tolist()
 
-        with open("energy_tickers.txt", "w") as f:
+        with open(output_path, "w") as f:
             for ticker in tickers:
                 f.write(f"{ticker}\n")
 
