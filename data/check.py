@@ -10,7 +10,7 @@ warnings.filterwarnings('ignore')
 # ==========================================
 # 1. CONFIGURATION
 # ==========================================
-START_DATE = '2018-01-01'
+START_DATE = '2016-01-01'
 END_DATE = '2025-12-31'
 TARGET_TICKER = 'XLE'
 
@@ -150,7 +150,7 @@ def build_and_scale_dataset():
     # 6. Time Period Splitting
     df.index = df.index.tz_localize(None)
     
-    train_df = df.loc['2018-01-01':'2023-12-31']
+    train_df = df.loc['2016-01-01':'2023-12-31']
     val_df   = df.loc['2024-01-01':'2024-12-31']
     test_df  = df.loc['2025-01-01':'2025-12-31']
     
@@ -189,9 +189,9 @@ if __name__ == "__main__":
     print("\nTraining Target Distribution:")
     print(y_train.value_counts(normalize=True).apply(lambda x: f"{x*100:.2f}%"))
     
-    X_train.to_csv('X_train1.csv')
-    y_train.to_csv('y_train1.csv')
-    X_val.to_csv('X_val.csv')
-    y_val.to_csv('y_val.csv')
-    X_test.to_csv('X_test.csv')
-    y_test.to_csv('y_test.csv')
+    X_train.to_csv('X_train(2016-2023).csv')
+    y_train.to_csv('y_train1(2016-2023).csv')
+    X_val.to_csv('X_val(2024).csv')
+    y_val.to_csv('y_val(2024).csv')
+    X_test.to_csv('X_test(2025).csv')
+    y_test.to_csv('y_test(2025).csv')
