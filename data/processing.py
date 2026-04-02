@@ -7,9 +7,6 @@ import os
 
 warnings.filterwarnings('ignore')
 
-# ==========================================
-# 1. CONFIGURATION
-# ==========================================
 START_DATE = '2016-01-01'
 END_DATE = '2025-12-31'
 TARGET_TICKER = 'XLE'
@@ -26,12 +23,9 @@ MACRO_TICKERS = {
     '^FTSE': 'FTSE_100'
 }
 
-# The text file containing your tickers (one per line)
 TICKERS_FILE = 'data/energy_tickers.txt'
 
-# ==========================================
-# 2. HELPER FUNCTIONS
-# ==========================================
+# HELPER FUNCTIONS
 def load_tickers_from_file(filepath):
     """Reads tickers from a text file, handling blank lines and whitespace."""
     if not os.path.exists(filepath):
@@ -78,18 +72,17 @@ def filter_valid_stocks(tickers, start_year=2018, min_price=5.0):
     print(f"Kept {len(valid_tickers)} valid, actively trading tickers.")
     return valid_tickers
 
-# ==========================================
-# 3. MAIN BUILD FUNCTION
-# ==========================================
+# MAIN BUILD FUNCTION
+
 def build_and_scale_dataset():
-    # 1. Load from file and Filter the Finviz list
+    # Load from file and Filter the Finviz list
     raw_tickers = load_tickers_from_file(TICKERS_FILE)
     valid_energy_stocks = filter_valid_stocks(raw_tickers)
     
     if not valid_energy_stocks:
         raise ValueError("No valid stocks remained after filtering. Check your text file and constraints.")
     
-    # 2. Download XLE (Target Setup)
+    # Download XLE (Target Setup)
     print(f"\nDownloading Target: {TARGET_TICKER}")
     df = yf.download(TARGET_TICKER, start=START_DATE, end=END_DATE)[['Close']]
     if isinstance(df.columns, pd.MultiIndex):
@@ -111,7 +104,7 @@ def build_and_scale_dataset():
     # Drop intermediate target calculation columns to avoid model cheating
     df.drop(columns=['XLE_Close', 'XLE_Log_Return', 'XLE_Green_Today'], inplace=True)
 
-    # 3. Download Macro Features
+    # Download Macro Features
     print("\nDownloading Macro Features...")
     for ticker, name in MACRO_TICKERS.items():
         feat_data = yf.download(ticker, start=START_DATE, end=END_DATE)[['Close']]
@@ -124,7 +117,7 @@ def build_and_scale_dataset():
         safe_macro_close = close_series.clip(lower=0.01)
         df[f'{name}_Log_Return'] = np.log(safe_macro_close / safe_macro_close.shift(1))
 
-    # 4. Download Individual Energy Stock Features
+    # Download Individual Energy Stock Features
     print("\nDownloading Individual Energy Stocks...")
     stock_data = yf.download(valid_energy_stocks, start=START_DATE, end=END_DATE)['Close']
     
@@ -175,9 +168,8 @@ def build_and_scale_dataset():
     return X_train_scaled, y_train, X_val_scaled, y_val, X_test_scaled, y_test
     
 
-# ==========================================
-# 4. EXECUTION
-# ==========================================
+# EXECUTION
+
 if __name__ == "__main__":
     X_train, y_train, X_val, y_val, X_test, y_test = build_and_scale_dataset()
     
