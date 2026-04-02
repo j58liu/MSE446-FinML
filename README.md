@@ -22,6 +22,7 @@ This downloads market data via Yahoo Finance, constructs features (macro indicat
 
 LSTM: Open and run `lstm_model/main.ipynb` in Jupyter.
 SVM: Open and run `model/svm_model.ipynb` in Jupyter.
+Gradient Boosting (XGBoost): Run `python GradientBoosting/train_gb.py`
 
 ## Dependencies
 
@@ -43,11 +44,13 @@ MSE446-FinML/
 │   ├── y_train1(2016-2023).csv    # Training labels
 │   ├── y_val(2024).csv            # Validation labels
 │   └── y_test(2025).csv           # Test labels
+├── GradientBoosting/              
+│   └── train_gb.py                # Gradient Boosting(XGBoost) model training and evaluation
 ├── lstm_model/
 │   ├── config.ipynb               # configuration file for LSTM model
 │   ├── data.ipynb                 # data loading for LSTM model
 │   ├── main.ipynb                 # main pipeline for LSTM model training and evaluation
-│   ├── modules.ipynb              # LSTM classifier
+│   └──  modules.ipynb             # LSTM classifier
 └── model/
     └── svm_model.ipynb            # SVM model training and evaluation
 ```
