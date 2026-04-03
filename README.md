@@ -24,6 +24,7 @@ This downloads market data via Yahoo Finance, constructs features (macro indicat
 * SVM: Open and run `model/svm_model.ipynb` in Jupyter.
 * Gradient Boosting (XGBoost): Run `python GradientBoosting/train_gb.py`
 * Random Forest: Open and run `model/random_forest.ipynb` in Jupyter
+* Logistic Regression: 
 
 ## Dependencies
 
@@ -52,10 +53,10 @@ MSE446-FinML/
 │   ├── data.ipynb                 # data loading for LSTM model
 │   ├── main.ipynb                 # main pipeline for LSTM model training and evaluation
 │   └──  modules.ipynb             # LSTM classifier
-└── model/
-|    └── svm_model.ipynb           # SVM model training and evaluation
-|    └── random_forest.ipynb       # Random forest model training and evaluation
-├── LR_model.ipynb                 #Logistic regression model training, and evaluation
+├── model/
+│    └── svm_model.ipynb           # SVM model training and evaluation
+│    └── random_forest.ipynb       # Random forest model training and evaluation
+└── LR_model.ipynb                 # Logistic regression model training, and evaluation
 ```
 
 ## Reproducibility Instructions
