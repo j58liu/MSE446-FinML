@@ -52,7 +52,8 @@ MSE446-FinML/
 │   ├── main.ipynb                 # main pipeline for LSTM model training and evaluation
 │   └──  modules.ipynb             # LSTM classifier
 └── model/
-    └── svm_model.ipynb            # SVM model training and evaluation
+|    └── svm_model.ipynb           # SVM model training and evaluation
+├── LR_model.ipynb                 #Logistic regression model training, and evaluation
 ```
 
 ## Reproducibility Instructions
@@ -67,9 +68,24 @@ MSE446-FinML/
    python data/data.py
    ```
    Note: Re-running `data.py` fetches live data from Yahoo Finance. Market data updates daily, so results may differ slightly if new trading days have elapsed since the CSVs were generated.
-4. **Run the notebook**:
-   ```bash
-   jupyter notebook model/svm_model.ipynb
-   ```
-   Execute all cells in order. The notebook uses `random_state=42` throughout for deterministic results given the same input data.
-5. **Expected outputs**: The notebook produces baseline and tuned SVM accuracy/ROC-AUC metrics, confusion matrices, ROC curves, and a sensitivity analysis across decision thresholds.
+4. **Run the models:
+
+    Logistic Regression: Open and run LR_model.ipynb in Jupyter
+    SVM: Open and run model/svm_model.ipynb in Jupyter
+    LSTM: Open and run lstm_model/main.ipynb in Jupyter
+    
+    Gradient Boosting (XGBoost):
+    ```bash
+    python GradientBoosting/train_gb.py
+    ```
+    Execute all notebook cells in order. Notebooks use fixed random states where applicable for reproducibility.
+
+5. **Expected outputs:
+    Each model produces:
+    
+    Baseline and tuned performance metrics (Accuracy, F1-score, ROC-AUC)
+    Confusion matrices
+    ROC curves
+    Sensitivity analysis across different classification thresholds
+    
+    These outputs allow for consistent comparison of model performance across different algorithms.
