@@ -22,7 +22,7 @@ This downloads market data via Yahoo Finance, constructs features (macro indicat
 
 * LSTM: Open and run `lstm_model/main.ipynb` in Jupyter.
 * SVM: Open and run `model/svm_model.ipynb` in Jupyter.
-* Gradient Boosting (XGBoost): Run `python GradientBoosting/train_gb.py`
+* Gradient Boosting (XGBoost): Run `python GradientBoosting/train_gb.py` (takes about 430 seconds/7 minutes)
 * Random Forest: Open and run `model/random_forest.ipynb` in Jupyter
 * Logistic Regression: Open and run `python LR_model.ipynb`
 
